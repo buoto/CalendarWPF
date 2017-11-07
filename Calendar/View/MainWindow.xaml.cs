@@ -34,6 +34,14 @@ namespace Calendar.View
             Label label = sender as Label;
             Appointment appointment = label.DataContext as Appointment;
             Console.WriteLine(appointment);
+
+            DetailsWindow detailsWindow = new DetailsWindow();
+            DetailsWindowViewModel detailsWindowViewModel = detailsWindow.dwvm;
+            // TODO init new window state
+            bool? res = detailsWindow.ShowDialog();
+            if (res.HasValue && res.Value) {
+                // TODO update state
+            }
         }
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
