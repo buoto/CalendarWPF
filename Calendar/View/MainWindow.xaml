@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="986.649">
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel x:Name="mwvm"/>
     </Window.DataContext>
     <Grid TextElement.FontSize="10">
         <Grid.RowDefinitions>
@@ -38,7 +38,7 @@
                 <Setter Property="Command" Value="{Binding ButtonCommand}"/>
             </Style>
         </Grid.Resources>
-        
+
         <Button Content="prev"/>
         <Label Content="Monday" Grid.Column="1" />
         <Label Content="Tuesday" Grid.Column="2" />
@@ -48,16 +48,16 @@
         <Label Content="Saturday" Grid.Column="6" />
         <Label Content="Sunday" Grid.Column="7" />
         <Button Content="prev" Grid.Column="8" />
-        
+
         <Label Content="W" Grid.Row="1" />
         <Label Content="W" Grid.Row="1" Grid.Column="8" />
-        
+
         <Label Content="W" Grid.Row="2" />
         <Label Content="W" Grid.Row="2" Grid.Column="8" />
-        
+
         <Label Content="W" Grid.Row="3" />
         <Label Content="W" Grid.Row="3" Grid.Column="8" />
-        
+
         <Label Content="W" Grid.Row="4" />
         <Label Content="W" Grid.Row="4" Grid.Column="8" />
 
@@ -69,12 +69,12 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                    <Label Content="{Binding DateTime}" ContentStringFormat="MMMM dd"/>
-                        <ItemsControl ItemsSource="{Binding Appointments}" HorizontalAlignment="Left" Width="Auto">
+                    <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Background="Transparent">
+                        <Label Content="{Binding DateTime}" ContentStringFormat="MMMM dd"/>
+                        <ItemsControl ItemsSource="{Binding Appointments}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" >
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Label>
+                                    <Label MouseDoubleClick="Label_MouseDoubleClick">
                                         <Label.Content>
                                             <TextBlock>
                                                 <TextBlock.Text>
@@ -89,7 +89,7 @@
                                     </Label>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        </ItemsControl>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
