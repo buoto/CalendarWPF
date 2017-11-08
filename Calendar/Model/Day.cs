@@ -10,11 +10,12 @@ namespace Calendar.Model
     {
         public DateTime DateTime { get; set; }
 
-        public List<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public List<Appointment> Appointments { get; set; }
 
         public Day(DateTime dateTime)
         {
             DateTime = dateTime;
+            Appointments = new List<Appointment>();
         }
     }
 }

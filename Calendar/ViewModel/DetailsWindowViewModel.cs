@@ -8,5 +8,6 @@ namespace Calendar.ViewModel
 {
     class DetailsWindowViewModel : ViewModelBase
     {
+        public string Title { get; set; } = "Appointment";
     }
 }

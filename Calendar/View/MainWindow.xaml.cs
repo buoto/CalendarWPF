@@ -33,7 +33,6 @@ namespace Calendar.View
             MainWindowViewModel mainWindowViewModel = this.mwvm;
             Label label = sender as Label;
             Appointment appointment = label.DataContext as Appointment;
-            Console.WriteLine(appointment);
 
             DetailsWindow detailsWindow = new DetailsWindow();
             DetailsWindowViewModel detailsWindowViewModel = detailsWindow.dwvm;
@@ -53,6 +52,12 @@ namespace Calendar.View
                 Day day = stackPanel.DataContext as Day;
                 Console.WriteLine(day.DateTime);
             }
+        }
+
+        private void OpenEditWindow(Appointment appointment) {
+        }
+
+        private void OpenCreateWindow(Day day) {
         }
     }
 }
