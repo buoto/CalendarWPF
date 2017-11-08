@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Calendar"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-        <local:NinjectServiceLocator x:Key="serviceLocator" />
+        <local:MainModule x:Key="mainModule" />
+        <local:NinjectServiceLocator x:Key="serviceLocator" Module="{StaticResource mainModule}"/>
     </Application.Resources>
 </Application>

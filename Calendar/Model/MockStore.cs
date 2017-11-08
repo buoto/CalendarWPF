@@ -16,9 +16,14 @@ namespace Calendar.Model
         {
         }
 
-        public List<Day> GetDaysWithNow()
+        public List<Day> GetDays(DateTime dateTime)
         {
             return new List<Day>();
+        }
+
+        public List<Day> GetDaysWithNow()
+        {
+            return GetDays(DateTime.Now);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Calendar.ViewModel;
 using Ninject;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,8 @@ namespace Calendar
 {
     class NinjectServiceLocator
     {
-        private readonly IKernel kernel;
-
-        public NinjectServiceLocator() {
-            this.kernel = new StandardKernel(new MainModule());
-        }
+        private IKernel kernel;
+        public NinjectModule Module { set => kernel = new StandardKernel(value); }
 
         public MainWindowViewModel MainWindowViewModel {
             get { return kernel.Get<MainWindowViewModel>(); }

@@ -12,5 +12,16 @@ namespace Calendar.Model
         {
             Name = name;
         }
+
+        public Appointment(string name, DateTime start, DateTime end) : this(name)
+        {
+            Start = start;
+            End = end;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0}-{1} {2}", Start, End, Name);
+        }
     }
 }

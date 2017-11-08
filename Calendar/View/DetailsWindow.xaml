@@ -8,6 +8,8 @@
         mc:Ignorable="d"
         Title="{Binding Title}" Height="400" Width="400"
         DataContext="{Binding Path=DetailsWindowViewModel, Source={StaticResource serviceLocator}}">
+    <Window.Resources> 
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -36,20 +38,20 @@
         </Grid.Resources>
 
         <Label x:Name="nameLabel" Content="Appointment name" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="nameBox" TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="nameBox" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="3"/>
         
         <Label x:Name="startLabel" Content="Start time" Grid.ColumnSpan="3" Grid.Row="2" />
-        <TextBox x:Name="startHourBox" TextWrapping="Wrap" Grid.Row="3" />
+        <TextBox x:Name="startHourBox" Text="{Binding Path=StartHour, Converter={local:IntConverter}, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="3" />
         <Label x:Name="startSeparator" Content=":" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="3" />
-        <TextBox x:Name="startMinuteBox" TextWrapping="Wrap" Grid.Row="3" Grid.Column="3" />
+        <TextBox x:Name="startMinuteBox" Text="{Binding Path=StartMinute, Converter={local:IntConverter}, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="3" Grid.Column="3" />
 
         <Label x:Name="endLabel" Content="End time" Grid.ColumnSpan="3" Grid.Row="4"/>
-        <TextBox x:Name="endHourBox" TextWrapping="Wrap" Grid.Row="5" />
+        <TextBox x:Name="endHourBox" Text="{Binding Path=EndHour, Converter={local:IntConverter}, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="5" />
         <Label x:Name="endSeparator" Content=":" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="5"/>
-        <TextBox x:Name="endMinuteBox" TextWrapping="Wrap" Grid.Row="5" Grid.Column="3" />
+        <TextBox x:Name="endMinuteBox" Text="{Binding Path=EndMinute, Converter={local:IntConverter}, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="5" Grid.Column="3" />
         
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="2" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Right" Grid.Row="6" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="2" VerticalAlignment="Top" Width="75" Command="{Binding SaveCommand}"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Right" Grid.Row="6" VerticalAlignment="Top" Width="75" Command="{Binding CloseCommand}"/>
+        <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Width="75" Command="{Binding DeleteCommand}"/>
     </Grid>
 </Window>

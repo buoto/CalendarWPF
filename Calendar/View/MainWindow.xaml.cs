@@ -36,10 +36,16 @@ namespace Calendar.View
 
             DetailsWindow detailsWindow = new DetailsWindow();
             DetailsWindowViewModel detailsWindowViewModel = detailsWindow.DataContext as DetailsWindowViewModel;
-            // TODO init new window state
+            detailsWindowViewModel.Appointment = appointment;
             bool? res = detailsWindow.ShowDialog();
             if (res.HasValue && res.Value) {
-                // TODO update state
+                Appointment newAppointment = detailsWindowViewModel.Appointment;
+                if (newAppointment != null) {
+                    mainWindowViewModel.EditAppointment(appointment, detailsWindowViewModel.Appointment);
+                } else {
+                    mainWindowViewModel.DeleteAppointment(appointment);
+                }
+                System.Console.WriteLine(detailsWindowViewModel.Appointment);
             }
         }
 
@@ -51,6 +57,16 @@ namespace Calendar.View
                 StackPanel stackPanel = sender as StackPanel;
                 Day day = stackPanel.DataContext as Day;
                 Console.WriteLine(day.DateTime);
+
+                DetailsWindow detailsWindow = new DetailsWindow();
+                DetailsWindowViewModel detailsWindowViewModel = detailsWindow.DataContext as DetailsWindowViewModel;
+                detailsWindowViewModel.Day = day;
+                bool? res = detailsWindow.ShowDialog();
+                if (res.HasValue && res.Value) {
+                    // TODO update state
+                    mainWindowViewModel.AddAppointment(day, detailsWindowViewModel.Appointment);
+                System.Console.WriteLine(detailsWindowViewModel.Appointment);
+                }
             }
         }
 

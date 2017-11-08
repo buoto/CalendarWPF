@@ -9,6 +9,7 @@ namespace Calendar.Model
     interface IStore
     {
         List<Day> GetDaysWithNow();
+        List<Day> GetDays(DateTime dateTime);
         void AddAppointment(Appointment appointment);
         void DeleteAppointment(Appointment appointment);
     }
