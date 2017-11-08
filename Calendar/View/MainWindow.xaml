@@ -8,10 +8,8 @@
         xmlns:local="clr-namespace:Calendar"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="986.649">
-    <Window.DataContext>
-        <vm:MainWindowViewModel x:Name="mwvm"/>
-    </Window.DataContext>
+        Title="MainWindow" Height="400" Width="986.649"
+        DataContext="{Binding Path=MainWindowViewModel, Source={StaticResource serviceLocator}}" >
     <Grid TextElement.FontSize="10">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

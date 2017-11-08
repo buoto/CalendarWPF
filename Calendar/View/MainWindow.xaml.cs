@@ -30,12 +30,12 @@ namespace Calendar.View
         private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            MainWindowViewModel mainWindowViewModel = this.mwvm;
+            MainWindowViewModel mainWindowViewModel = this.DataContext as MainWindowViewModel;
             Label label = sender as Label;
             Appointment appointment = label.DataContext as Appointment;
 
             DetailsWindow detailsWindow = new DetailsWindow();
-            DetailsWindowViewModel detailsWindowViewModel = detailsWindow.dwvm;
+            DetailsWindowViewModel detailsWindowViewModel = detailsWindow.DataContext as DetailsWindowViewModel;
             // TODO init new window state
             bool? res = detailsWindow.ShowDialog();
             if (res.HasValue && res.Value) {
@@ -47,7 +47,7 @@ namespace Calendar.View
         {
             if (e.ClickCount == 2)
             {
-                MainWindowViewModel mainWindowViewModel = this.mwvm;
+                MainWindowViewModel mainWindowViewModel = this.DataContext as MainWindowViewModel;
                 StackPanel stackPanel = sender as StackPanel;
                 Day day = stackPanel.DataContext as Day;
                 Console.WriteLine(day.DateTime);
