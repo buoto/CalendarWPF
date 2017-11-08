@@ -30,12 +30,9 @@ namespace Calendar.ViewModel
         public void EditAppointment(Appointment old, Appointment appointment) {
             foreach (var day in Days) {
                 if (day.DateTime.Year == old.Start.Year && day.DateTime.Month == old.Start.Month && day.DateTime.Day == old.Start.Day) {
-                    var index = day.Appointments.IndexOf(old);
-                    if (index >= 0)
-                    {
-                        day.Appointments[index] = appointment;
-                        OnPropertyChanged("Days");
-                        break;
+                    if (day.Appointments.Remove(old)) {
+                        day.Appointments.Add(appointment);
+                        day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.Start));
                     }
                 }
             }
@@ -51,11 +48,8 @@ namespace Calendar.ViewModel
         }
 
         public void AddAppointment(Day day, Appointment appointment) {
-            var index = Days.IndexOf(day);
-            if (index >= 0)
-            {
-                Days[index].Appointments.Add(appointment);
-            }
+            day.Appointments.Add(appointment);
+            day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.Start));
         }
     }
 }
