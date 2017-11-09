@@ -45,7 +45,6 @@ namespace Calendar.View
                 } else {
                     mainWindowViewModel.DeleteAppointment(appointment);
                 }
-                System.Console.WriteLine(detailsWindowViewModel.Appointment);
             }
         }
 
@@ -63,17 +62,14 @@ namespace Calendar.View
                 detailsWindowViewModel.Day = day;
                 bool? res = detailsWindow.ShowDialog();
                 if (res.HasValue && res.Value) {
-                    // TODO update state
-                    mainWindowViewModel.AddAppointment(day, detailsWindowViewModel.Appointment);
-                System.Console.WriteLine(detailsWindowViewModel.Appointment);
+                    Appointment newAppointment = detailsWindowViewModel.Appointment;
+                    if (newAppointment != null)
+                    {
+                        mainWindowViewModel.AddAppointment(day, detailsWindowViewModel.Appointment);
+                    }
                 }
             }
         }
 
-        private void OpenEditWindow(Appointment appointment) {
-        }
-
-        private void OpenCreateWindow(Day day) {
-        }
     }
 }

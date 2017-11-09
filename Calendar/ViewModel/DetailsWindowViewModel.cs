@@ -61,6 +61,7 @@ namespace Calendar.ViewModel
             set
             {
                 appointment = value;
+                OnPropertyChanged("DeleteVisibility");
 
                 Name = value.Name;
 
@@ -129,6 +130,8 @@ namespace Calendar.ViewModel
 
         public Day Day { get; set; }
         public Action CloseAction { get; set; }
+
+        public bool DeleteVisibility { get => appointment != null; }
 
         private int startHour, startMinute, endHour, endMinute;
 
