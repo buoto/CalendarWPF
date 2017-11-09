@@ -70,6 +70,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MainModule.cs" />
+    <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Day.cs" />

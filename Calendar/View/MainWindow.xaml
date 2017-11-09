@@ -12,14 +12,15 @@
         DataContext="{Binding Path=MainWindowViewModel, Source={StaticResource serviceLocator}}" >
     <Grid TextElement.FontSize="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -27,12 +28,21 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,5,5,5"/>
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="Background" Value="#CBE5E5" />
+                <Setter Property="Foreground" Value="#00008F" />
+                <Setter Property="FontFamily" Value="Consolas" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Background" Value="#CBCBE8" />
+                <Setter Property="Foreground" Value="#00008F" />
+                <Setter Property="FontFamily" Value="Consolas" />
             </Style>
         </Grid.Resources>
 
@@ -66,26 +76,47 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Background="Transparent">
-                        <Label Content="{Binding DateTime}" ContentStringFormat="MMMM d"/>
-                        <ItemsControl ItemsSource="{Binding Appointments}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" >
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Label MouseDoubleClick="Label_MouseDoubleClick">
-                                        <TextBlock>
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="{}{0:HH:mm} - {1:HH:mm} {2}">
-                                                    <Binding Path="Start" />
-                                                    <Binding Path="End" />
-                                                    <Binding Path="Name" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-                                    </Label>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
+                    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2">
+
+                        <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Background="Transparent">
+                            <StackPanel.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="#00008F" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                </Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="Black" />
+                                    <Setter Property="CornerRadius" Value="2" />
+                                </Style>
+                            </StackPanel.Resources>
+
+                            <Border>
+                                <Label Content="{Binding DateTime}" ContentStringFormat="MMMM d"/>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding Appointments}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" >
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="Teal" BorderThickness="2" CornerRadius="2">
+                                            <Label MouseDoubleClick="Label_MouseDoubleClick" Foreground="Teal">
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0:HH:mm} - {1:HH:mm} {2}">
+                                                            <Binding Path="Start" />
+                                                            <Binding Path="End" />
+                                                            <Binding Path="Name" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Label>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

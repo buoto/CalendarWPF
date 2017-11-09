@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:Calendar"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
+        <local:MockModule x:Key="mockModule" />
         <local:MainModule x:Key="mainModule" />
-        <local:NinjectServiceLocator x:Key="serviceLocator" Module="{StaticResource mainModule}"/>
+        <local:NinjectServiceLocator x:Key="serviceLocator" Module="{StaticResource mockModule}"/>
     </Application.Resources>
 </Application>
