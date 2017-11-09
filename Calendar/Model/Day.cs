@@ -12,7 +12,7 @@ namespace Calendar.Model
     {
         public DateTime DateTime { get; set; }
         public ObservableCollection<Appointment> Appointments {
-            get => appointments;
+            get { return appointments; }
             set
             {
                 if (value == appointments)

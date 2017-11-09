@@ -36,7 +36,8 @@ namespace Calendar.Model
         public void AddAppointment(Appointment appointment)
         {
             var date = appointment.Start.Date;
-            appointmentsDict.TryGetValue(date, out List<Appointment> appointments);
+            List<Appointment> appointments;
+            appointmentsDict.TryGetValue(date, out appointments);
             if (appointments == null) {
                 appointments = new List<Appointment>();
             }
@@ -49,7 +50,8 @@ namespace Calendar.Model
         public void DeleteAppointment(Appointment appointment)
         {
             var date = appointment.Start.Date;
-            appointmentsDict.TryGetValue(date, out List<Appointment> appointments);
+            List<Appointment> appointments;
+            appointmentsDict.TryGetValue(date, out appointments);
             if (appointments == null) {
                 appointments = new List<Appointment>();
             }
@@ -78,8 +80,8 @@ namespace Calendar.Model
             for (int i = 0; i < 28; i++) {
                 var date = monday.AddDays(i);
                 Day day = new Day(date);
-
-                foreach (Appointment appointment in appointmentsDict.TryGetValue(date.Date, out List<Appointment> appointments) ? appointments : new List<Appointment>())
+                List<Appointment> appointments;
+                foreach (Appointment appointment in appointmentsDict.TryGetValue(date.Date, out appointments) ? appointments : new List<Appointment>())
                 {
                     day.Appointments.Add(appointment);
                 }

@@ -37,7 +37,7 @@ namespace Calendar
         #endregion
         public void OnCanExecuteChanged()
         {
-            CanExecuteChanged?.Invoke(null, null);
+            CanExecuteChanged.Invoke(null, null);
         }
     }
 }

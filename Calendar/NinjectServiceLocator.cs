@@ -12,7 +12,7 @@ namespace Calendar
     class NinjectServiceLocator
     {
         private IKernel kernel;
-        public NinjectModule Module { set => kernel = new StandardKernel(value); }
+        public NinjectModule Module { set { kernel = new StandardKernel(value); } }
 
         public MainWindowViewModel MainWindowViewModel {
             get { return kernel.Get<MainWindowViewModel>(); }

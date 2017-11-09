@@ -10,9 +10,9 @@ namespace Calendar.ViewModel
 {
     class DetailsWindowViewModel : ViewModelBase
     {
-        public ICommand SaveCommand { get; }
-        public ICommand CloseCommand { get; }
-        public ICommand DeleteCommand { get; }
+        public ICommand SaveCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public DetailsWindowViewModel()
         {
@@ -50,9 +50,10 @@ namespace Calendar.ViewModel
                     CloseAction();
                 }
             ));
+            Title = "Appointment";
         }
 
-        public string Title { get; set; } = "Appointment";
+        public string Title { get; set; }
          public Appointment Appointment {
             get
             {
@@ -76,7 +77,7 @@ namespace Calendar.ViewModel
         private string name;
 
         public string Name {
-            get => name;
+            get { return name; }
             set
             {
                 if (name == value)
@@ -87,7 +88,7 @@ namespace Calendar.ViewModel
         }
 
         public int StartHour {
-            get => startHour;
+            get { return startHour; }
             set
             {
                 if (startHour == value)
@@ -98,7 +99,7 @@ namespace Calendar.ViewModel
         }
         public int StartMinute
         {
-            get => startMinute;
+            get { return startMinute; }
             set
             {
                 if (startMinute == value)
@@ -108,7 +109,7 @@ namespace Calendar.ViewModel
             }
         }
         public int EndHour {
-            get => endHour;
+            get { return endHour; }
             set
             {
                 if (endHour == value)
@@ -118,7 +119,7 @@ namespace Calendar.ViewModel
             }
         }
         public int EndMinute {
-            get => endMinute; 
+            get { return endMinute; }
             set
             {
                 if (endMinute == value)
@@ -131,7 +132,7 @@ namespace Calendar.ViewModel
         public Day Day { get; set; }
         public Action CloseAction { get; set; }
 
-        public bool DeleteVisibility { get => appointment != null; }
+        public bool DeleteVisibility { get { return appointment != null; } }
 
         private int startHour, startMinute, endHour, endMinute;
 

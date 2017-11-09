@@ -12,11 +12,11 @@ namespace Calendar.ViewModel
     {
         private IStore store;
 
-        public RelayCommand PrevCommand { get; }
-        public RelayCommand NextCommand { get; }
+        public RelayCommand PrevCommand { get; set; }
+        public RelayCommand NextCommand { get; set; }
         private ObservableCollection<Day> days;
         public ObservableCollection<Day> Days {
-            get => days;
+            get { return days;}
             set {
                 days = value;
 
@@ -28,10 +28,10 @@ namespace Calendar.ViewModel
             }
         }
 
-        public string FirstWeek { get => String.Format("W{0:00}\n{1}", Days[0]?.DateTime.DayOfYear/7, Days[0]?.DateTime.Year); }
-        public string SecondWeek { get => String.Format("W{0:00}\n{1}", Days[7]?.DateTime.DayOfYear/7, Days[7]?.DateTime.Year); }
-        public string ThirdWeek { get => String.Format("W{0:00}\n{1}", Days[14]?.DateTime.DayOfYear/7, Days[14]?.DateTime.Year); }
-        public string FourthWeek { get => String.Format("W{0:00}\n{1}", Days[21]?.DateTime.DayOfYear/7, Days[21]?.DateTime.Year); }
+        public string FirstWeek { get { return String.Format("W{0:00}\n{1}", Days[0].DateTime.DayOfYear/7, Days[0].DateTime.Year); }}
+        public string SecondWeek { get { return String.Format("W{0:00}\n{1}", Days[7].DateTime.DayOfYear/7, Days[7].DateTime.Year); }}
+        public string ThirdWeek { get { return String.Format("W{0:00}\n{1}", Days[14].DateTime.DayOfYear/7, Days[14].DateTime.Year); }}
+        public string FourthWeek { get { return String.Format("W{0:00}\n{1}", Days[21].DateTime.DayOfYear/7, Days[21].DateTime.Year); }}
 
         public MainWindowViewModel(IStore store)
         {
