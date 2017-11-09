@@ -60,6 +60,8 @@ namespace Calendar.ViewModel
                     if (day.Appointments.Remove(old)) {
                         day.Appointments.Add(appointment);
                         day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.Start));
+                        store.DeleteAppointment(old);
+                        store.AddAppointment(appointment);
                     }
                 }
             }
@@ -69,7 +71,10 @@ namespace Calendar.ViewModel
             foreach (var day in Days) {
                 if (day.DateTime.Year == appointment.Start.Year && day.DateTime.Month == appointment.Start.Month && day.DateTime.Day == appointment.Start.Day) {
                     if (day.Appointments.Remove(appointment))
+                    {
+                        store.DeleteAppointment(appointment);
                         break;
+                    }
                 }
             }
         }
@@ -77,6 +82,7 @@ namespace Calendar.ViewModel
         public void AddAppointment(Day day, Appointment appointment) {
             day.Appointments.Add(appointment);
             day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.Start));
+            store.AddAppointment(appointment);
         }
     }
 }

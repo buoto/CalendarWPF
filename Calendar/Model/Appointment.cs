@@ -2,11 +2,16 @@
 
 namespace Calendar.Model
 {
-    internal class Appointment
+    [Serializable]
+    public class Appointment
     {
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+
+        public Appointment()
+        {
+        }
 
         public Appointment(string name)
         {
