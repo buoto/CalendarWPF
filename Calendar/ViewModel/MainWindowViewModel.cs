@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Calendar.ViewModel
 {
-    class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private IStore store;
 

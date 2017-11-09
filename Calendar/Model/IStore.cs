@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    interface IStore
+    public interface IStore
     {
         List<Day> GetDaysWithNow();
         List<Day> GetDays(DateTime dateTime);

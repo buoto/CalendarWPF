@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Calendar
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         private Action<object> action;
         private Predicate<object> predicate;

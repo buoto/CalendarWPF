@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    class Day : INotifyPropertyChanged
+    public class Day : INotifyPropertyChanged
     {
         public DateTime DateTime { get; set; }
         public ObservableCollection<Appointment> Appointments {
