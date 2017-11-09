@@ -71,5 +71,27 @@ namespace Calendar.View
             }
         }
 
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.FontSize = e.NewSize.Height * 0.04;
+        }
+
+        private void ItemsControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.FontSize = e.NewSize.Height * 0.02;
+        }
+
+        public bool PopupVisibility { get; set; }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Grid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Popup.IsOpen = !Popup.IsOpen;
+        }
+
     }
 }

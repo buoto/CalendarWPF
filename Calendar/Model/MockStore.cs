@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    class MockStore : IStore
+    public class MockStore : IStore
     {
         public void AddAppointment(Appointment appointment)
         {

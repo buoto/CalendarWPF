@@ -8,9 +8,11 @@
         xmlns:local="clr-namespace:Calendar"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="986.649"
+        Title="MainWindow" 
+        MinHeight="500" MinWidth="900"
+        MaxHeight="1500" MaxWidth="2700"
         DataContext="{Binding Path=MainWindowViewModel, Source={StaticResource serviceLocator}}" >
-    <Grid TextElement.FontSize="10">
+    <Grid SizeChanged="Grid_SizeChanged" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseRightButtonDown="Grid_MouseRightButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -31,6 +33,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="visibilityConverter" />
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="1"/>
                 <Setter Property="Background" Value="#CBE5E5" />
@@ -68,7 +71,7 @@
         <Label Content="{Binding FourthWeek}" Grid.Row="4" />
         <Label Content="{Binding FourthWeek}" Grid.Row="4" Grid.Column="8" />
 
-        <ItemsControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="7" ItemsSource="{Binding Days}" TextElement.FontSize="8">
+        <ItemsControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="7" ItemsSource="{Binding Days}" SizeChanged="ItemsControl_SizeChanged">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7" Rows="4"/>
@@ -76,7 +79,9 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2">
+                        
 
                         <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Background="Transparent">
                             <StackPanel.Resources>
@@ -116,7 +121,10 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
+
+                        
                     </Border>
+                    </ScrollViewer>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -130,5 +138,11 @@
         <Label Content="Saturday" Grid.Row="5" Grid.Column="6" />
         <Label Content="Sunday" Grid.Row="5" Grid.Column="7" />
         <Button Content="next" Grid.Row="5" Grid.Column="8" Command="{Binding NextCommand}" />
+        <Popup x:Name="Popup">
+            <StackPanel>
+                <ComboBox Width="120"/>
+                <ComboBox Width="120"/>
+            </StackPanel>
+        </Popup>
     </Grid>
 </Window>

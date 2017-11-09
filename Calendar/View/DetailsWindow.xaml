@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Calendar.View"
         xmlns:vm="clr-namespace:Calendar.ViewModel"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="400" Width="400"
+        Title="{Binding Title}" MinHeight="400" MinWidth="400"
+        MaxHeight="800" MaxWidth="800"
         DataContext="{Binding Path=DetailsWindowViewModel, Source={StaticResource serviceLocator}}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="visibilityConverter" />
