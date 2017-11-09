@@ -24,24 +24,16 @@ namespace Calendar.ViewModel.Tests
         public void MainWindowViewModelTest()
         {
             Assert.IsNotNull(mainWindowViewModel);
-        }
-
-        [TestMethod()]
-        public void EditAppointmentTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DeleteAppointmentTest()
-        {
-            Assert.Fail();
+            Assert.AreEqual(28, mainWindowViewModel.Days.Count);
         }
 
         [TestMethod()]
         public void AddAppointmentTest()
         {
-            Assert.Fail();
+            Appointment appointment = new Appointment("name", DateTime.Now, DateTime.Now);
+            mainWindowViewModel.AddAppointment(mainWindowViewModel.Days[0], appointment);
+
+            Assert.AreEqual("name", mainWindowViewModel.Days[0].Appointments[0].Name);
         }
     }
 }
