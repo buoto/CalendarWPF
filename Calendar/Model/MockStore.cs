@@ -18,7 +18,15 @@ namespace Calendar.Model
 
         public List<Day> GetDays(DateTime dateTime)
         {
-            return new List<Day>();
+            List<Day> list = new List<Day>();
+            DateTime monday = dateTime.AddDays(DayOfWeek.Monday - dateTime.DayOfWeek);
+
+            for (int i = 0; i < 28; i++) {
+                list.Add(new Day(monday.AddDays(i)));
+            }
+
+            list[3].Appointments.Add(new Appointment("FooBar", DateTime.Now, DateTime.Now.AddHours(1)));
+            return list;
         }
 
         public List<Day> GetDaysWithNow()

@@ -33,11 +33,10 @@
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="5,5,5,5"/>
-                <Setter Property="Command" Value="{Binding ButtonCommand}"/>
             </Style>
         </Grid.Resources>
 
-        <Button Content="prev"/>
+        <Button Content="prev" Command="{Binding PrevCommand}"/>
         <Label Content="Monday" Grid.Column="1" />
         <Label Content="Tuesday" Grid.Column="2" />
         <Label Content="Wednesday" Grid.Column="3" />
@@ -45,19 +44,19 @@
         <Label Content="Friday" Grid.Column="5" />
         <Label Content="Saturday" Grid.Column="6" />
         <Label Content="Sunday" Grid.Column="7" />
-        <Button Content="prev" Grid.Column="8" />
+        <Button Content="prev" Grid.Column="8" Command="{Binding PrevCommand}"/>
 
-        <Label Content="W" Grid.Row="1" />
-        <Label Content="W" Grid.Row="1" Grid.Column="8" />
+        <Label Content="{Binding FirstWeek}" Grid.Row="1" />
+        <Label Content="{Binding FirstWeek}" Grid.Row="1" Grid.Column="8" />
 
-        <Label Content="W" Grid.Row="2" />
-        <Label Content="W" Grid.Row="2" Grid.Column="8" />
+        <Label Content="{Binding SecondWeek}" Grid.Row="2" />
+        <Label Content="{Binding SecondWeek}" Grid.Row="2" Grid.Column="8" />
 
-        <Label Content="W" Grid.Row="3" />
-        <Label Content="W" Grid.Row="3" Grid.Column="8" />
+        <Label Content="{Binding ThirdWeek}" Grid.Row="3" />
+        <Label Content="{Binding ThirdWeek}" Grid.Row="3" Grid.Column="8" />
 
-        <Label Content="W" Grid.Row="4" />
-        <Label Content="W" Grid.Row="4" Grid.Column="8" />
+        <Label Content="{Binding FourthWeek}" Grid.Row="4" />
+        <Label Content="{Binding FourthWeek}" Grid.Row="4" Grid.Column="8" />
 
         <ItemsControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="7" ItemsSource="{Binding Days}" TextElement.FontSize="8">
             <ItemsControl.ItemsPanel>
@@ -91,7 +90,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Button Content="next" Grid.Row="5" />
+        <Button Content="next" Grid.Row="5" Command="{Binding NextCommand}" />
         <Label Content="Monday" Grid.Row="5" Grid.Column="1" />
         <Label Content="Tuesday" Grid.Row="5" Grid.Column="2" />
         <Label Content="Wednesday" Grid.Row="5" Grid.Column="3" />
@@ -99,6 +98,6 @@
         <Label Content="Friday" Grid.Row="5" Grid.Column="5" />
         <Label Content="Saturday" Grid.Row="5" Grid.Column="6" />
         <Label Content="Sunday" Grid.Row="5" Grid.Column="7" />
-        <Button Content="next" Grid.Row="5" Grid.Column="8" />
+        <Button Content="next" Grid.Row="5" Grid.Column="8" Command="{Binding NextCommand}" />
     </Grid>
 </Window>

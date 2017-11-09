@@ -12,19 +12,46 @@ namespace Calendar.ViewModel
     {
         private IStore store;
 
-        public ObservableCollection<Day> Days { get; set; }
+        public RelayCommand PrevCommand { get; }
+        public RelayCommand NextCommand { get; }
+        private ObservableCollection<Day> days;
+        public ObservableCollection<Day> Days {
+            get => days;
+            set {
+                days = value;
+
+                OnPropertyChanged("Days");
+                OnPropertyChanged("FirstWeek");
+                OnPropertyChanged("SecondWeek");
+                OnPropertyChanged("ThirdWeek");
+                OnPropertyChanged("FourthWeek");
+            }
+        }
+
+        public string FirstWeek { get => String.Format("W{0:00}\n{1}", Days[0]?.DateTime.DayOfYear/7, Days[0]?.DateTime.Year); }
+        public string SecondWeek { get => String.Format("W{0:00}\n{1}", Days[7]?.DateTime.DayOfYear/7, Days[7]?.DateTime.Year); }
+        public string ThirdWeek { get => String.Format("W{0:00}\n{1}", Days[14]?.DateTime.DayOfYear/7, Days[14]?.DateTime.Year); }
+        public string FourthWeek { get => String.Format("W{0:00}\n{1}", Days[21]?.DateTime.DayOfYear/7, Days[21]?.DateTime.Year); }
 
         public MainWindowViewModel(IStore store)
         {
             this.store = store;
 
-            Days = new ObservableCollection<Day>(store.GetDaysWithNow());
-            DateTime monday = DateTime.Now.AddDays(DayOfWeek.Monday - DateTime.Now.DayOfWeek);
-            for (int i = 0; i < 28; i++) {
-                Days.Add(new Day(monday.AddDays(i)));
-            }
+            PrevCommand = new RelayCommand(
+                new Action<object>(delegate (object obj)
+                {
+                    Days = new ObservableCollection<Day>(store.GetDays(Days[0].DateTime.AddDays(-7)));
+                }
+            ));
 
-            Days[3].Appointments.Add(new Appointment("FooBar", DateTime.Now, DateTime.Now.AddHours(1)));
+            NextCommand = new RelayCommand(
+                new Action<object>(delegate (object obj)
+                {
+                    Days = new ObservableCollection<Day>(store.GetDays(Days[0].DateTime.AddDays(7)));
+                }
+            ));
+
+            Days = new ObservableCollection<Day>(store.GetDaysWithNow());
         }
 
         public void EditAppointment(Appointment old, Appointment appointment) {
