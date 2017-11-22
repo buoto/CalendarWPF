@@ -28,7 +28,7 @@ namespace Calendar.ViewModel
                     {
                         time = appointment.Start;
                     }
-                    appointment = new Appointment(
+                    appointment = new Event(
                         Name,
                         new DateTime(time.Year, time.Month, time.Day, StartHour, StartMinute, 0),
                         new DateTime(time.Year, time.Month, time.Day, EndHour, EndMinute, 0));
@@ -54,7 +54,7 @@ namespace Calendar.ViewModel
         }
 
         public string Title { get; set; }
-         public Appointment Appointment {
+         public Event Appointment {
             get
             {
                 return appointment;
@@ -136,7 +136,7 @@ namespace Calendar.ViewModel
 
         private int startHour, startMinute, endHour, endMinute;
 
-        private Appointment appointment;
+        private Event appointment;
 
     }
 }

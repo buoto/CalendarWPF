@@ -30,7 +30,7 @@ namespace Calendar.ViewModel.Tests
         [TestMethod()]
         public void AddAppointmentTest()
         {
-            Appointment appointment = new Appointment("name", DateTime.Now, DateTime.Now);
+            Event appointment = new Event("name", DateTime.Now, DateTime.Now);
             mainWindowViewModel.AddAppointment(mainWindowViewModel.Days[0], appointment);
 
             Assert.AreEqual("name", mainWindowViewModel.Days[0].Appointments[0].Name);

@@ -11,7 +11,7 @@ namespace Calendar.Model
     class XMLFileStore : IStore
     {
         private static readonly string FILENAME = @"../../CalendarData.xml";
-        private Dictionary<DateTime, List<Appointment>> appointmentsDict = new Dictionary<DateTime, List<Appointment>>();
+        private Dictionary<DateTime, List<Event>> appointmentsDict = new Dictionary<DateTime, List<Event>>();
 
         public XMLFileStore()
         {
@@ -20,11 +20,11 @@ namespace Calendar.Model
 
         private void LoadState()
         {
-            List<Appointment> list;
-            XmlSerializer xs = new XmlSerializer(typeof(List<Appointment>));
+            List<Event> list;
+            XmlSerializer xs = new XmlSerializer(typeof(List<Event>));
             using (var sr = new StreamReader(FILENAME))
             {
-                list = (List<Appointment>)xs.Deserialize(sr);
+                list = (List<Event>)xs.Deserialize(sr);
             }
 
             foreach (var a in list.OrderBy(a => a.Start))
@@ -33,13 +33,13 @@ namespace Calendar.Model
             }
         }
 
-        public void AddAppointment(Appointment appointment)
+        public void AddAppointment(Event appointment)
         {
             var date = appointment.Start.Date;
-            List<Appointment> appointments;
+            List<Event> appointments;
             appointmentsDict.TryGetValue(date, out appointments);
             if (appointments == null) {
-                appointments = new List<Appointment>();
+                appointments = new List<Event>();
             }
             appointments.Add(appointment);
             appointmentsDict[date] = appointments;
@@ -47,13 +47,13 @@ namespace Calendar.Model
             SaveState();
         }
 
-        public void DeleteAppointment(Appointment appointment)
+        public void DeleteAppointment(Event appointment)
         {
             var date = appointment.Start.Date;
-            List<Appointment> appointments;
+            List<Event> appointments;
             appointmentsDict.TryGetValue(date, out appointments);
             if (appointments == null) {
-                appointments = new List<Appointment>();
+                appointments = new List<Event>();
             }
             appointments.Remove(appointment);
             appointmentsDict[date] = appointments;
@@ -62,11 +62,11 @@ namespace Calendar.Model
 
         private void SaveState()
         {
-            var list = new List<Appointment>();
+            var list = new List<Event>();
             foreach (var aps in appointmentsDict.ToArray()) {
                 list.AddRange(aps.Value);
             }
-            XmlSerializer xs = new XmlSerializer(typeof(List<Appointment>));
+            XmlSerializer xs = new XmlSerializer(typeof(List<Event>));
             using (TextWriter tw = new StreamWriter(FILENAME)) {
                 xs.Serialize(tw, list);
             } 
@@ -80,8 +80,8 @@ namespace Calendar.Model
             for (int i = 0; i < 28; i++) {
                 var date = monday.AddDays(i);
                 Day day = new Day(date);
-                List<Appointment> appointments;
-                foreach (Appointment appointment in appointmentsDict.TryGetValue(date.Date, out appointments) ? appointments : new List<Appointment>())
+                List<Event> appointments;
+                foreach (Event appointment in appointmentsDict.TryGetValue(date.Date, out appointments) ? appointments : new List<Event>())
                 {
                     day.Appointments.Add(appointment);
                 }

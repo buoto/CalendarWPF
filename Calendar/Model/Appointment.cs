@@ -1,32 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    [Serializable]
-    public class Appointment
+    class Appointment
     {
-        public string Name { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-
-        public Appointment()
-        {
-        }
-
-        public Appointment(string name)
-        {
-            Name = name;
-        }
-
-        public Appointment(string name, DateTime start, DateTime end) : this(name)
-        {
-            Start = start;
-            End = end;
-        }
-
-        public override string ToString()
-        {
-            return String.Format("{0}-{1} {2}", Start, End, Name);
-        }
+        public Guid AppointmentId { get; set; }
+        public string Title { get; set; }
+        //public Date AppointmentDate { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public virtual List<Attendance> Attendances { get; set; }
     }
 }

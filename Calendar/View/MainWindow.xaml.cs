@@ -33,14 +33,14 @@ namespace Calendar.View
             e.Handled = true;
             MainWindowViewModel mainWindowViewModel = this.DataContext as MainWindowViewModel;
             Label label = sender as Label;
-            Appointment appointment = label.DataContext as Appointment;
+            Event appointment = label.DataContext as Event;
 
             DetailsWindow detailsWindow = new DetailsWindow();
             DetailsWindowViewModel detailsWindowViewModel = detailsWindow.DataContext as DetailsWindowViewModel;
             detailsWindowViewModel.Appointment = appointment;
             bool? res = detailsWindow.ShowDialog();
             if (res.HasValue && res.Value) {
-                Appointment newAppointment = detailsWindowViewModel.Appointment;
+                Event newAppointment = detailsWindowViewModel.Appointment;
                 if (newAppointment != null) {
                     mainWindowViewModel.EditAppointment(appointment, detailsWindowViewModel.Appointment);
                 } else {
@@ -63,7 +63,7 @@ namespace Calendar.View
                 detailsWindowViewModel.Day = day;
                 bool? res = detailsWindow.ShowDialog();
                 if (res.HasValue && res.Value) {
-                    Appointment newAppointment = detailsWindowViewModel.Appointment;
+                    Event newAppointment = detailsWindowViewModel.Appointment;
                     if (newAppointment != null)
                     {
                         mainWindowViewModel.AddAppointment(day, detailsWindowViewModel.Appointment);

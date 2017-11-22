@@ -8,11 +8,11 @@ namespace Calendar.Model
 {
     public class MockStore : IStore
     {
-        public void AddAppointment(Appointment appointment)
+        public void AddAppointment(Event appointment)
         {
         }
 
-        public void DeleteAppointment(Appointment appointment)
+        public void DeleteAppointment(Event appointment)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Calendar.Model
                 list.Add(new Day(monday.AddDays(i)));
             }
 
-            list[3].Appointments.Add(new Appointment("FooBar", DateTime.Now, DateTime.Now.AddHours(1)));
+            list[3].Appointments.Add(new Event("FooBar", DateTime.Now, DateTime.Now.AddHours(1)));
             return list;
         }
 
