@@ -38,14 +38,14 @@
                 <Setter Property="Margin" Value="1"/>
                 <Setter Property="Background" Value="#CBE5E5" />
                 <Setter Property="Foreground" Value="#00008F" />
-                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontFamily" Value="{Binding FontStyle}" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="Margin" Value="1"/>
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 <Setter Property="Background" Value="#CBCBE8" />
                 <Setter Property="Foreground" Value="#00008F" />
-                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontFamily" Value="{Binding FontStyle}" />
             </Style>
         </Grid.Resources>
 
@@ -89,7 +89,7 @@
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="White" />
                                     <Setter Property="Foreground" Value="#00008F" />
-                                    <Setter Property="FontFamily" Value="Consolas" />
+                                        <Setter Property="FontFamily" Value="{Binding Path=DataContext.FontStyle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
                                 </Style>
                                 <Style TargetType="Border">
                                     <Setter Property="BorderThickness" Value="1" />
@@ -140,8 +140,11 @@
         <Button Content="next" Grid.Row="5" Grid.Column="8" Command="{Binding NextCommand}" />
         <Popup x:Name="Popup">
             <StackPanel>
-                <ComboBox Width="120"/>
-                <ComboBox Width="120"/>
+                <ComboBox Width="120" SelectedValue="{Binding FontStyle, Mode=TwoWay}" SelectedValuePath="Content">
+                    <ComboBoxItem Content="Consolas" />
+                    <ComboBoxItem Content="Arial" />
+                    <ComboBoxItem Content="Comic Sans MS" />
+                </ComboBox>
             </StackPanel>
         </Popup>
     </Grid>

@@ -12,6 +12,9 @@ namespace Calendar.ViewModel
     {
         private IStore store;
 
+        private String styleValue;
+        private String fontStyle = "Consolas";
+
         public RelayCommand PrevCommand { get; set; }
         public RelayCommand NextCommand { get; set; }
         private ObservableCollection<Day> days;
@@ -32,6 +35,10 @@ namespace Calendar.ViewModel
         public string SecondWeek { get { return String.Format("W{0:00}\n{1}", Days[7].DateTime.DayOfYear/7, Days[7].DateTime.Year); }}
         public string ThirdWeek { get { return String.Format("W{0:00}\n{1}", Days[14].DateTime.DayOfYear/7, Days[14].DateTime.Year); }}
         public string FourthWeek { get { return String.Format("W{0:00}\n{1}", Days[21].DateTime.DayOfYear/7, Days[21].DateTime.Year); }}
+
+        public string StyleValue { get { return styleValue; } set { styleValue = value; OnPropertyChanged("StyleValue"); } }
+
+        public string FontStyle { get { return fontStyle; } set { fontStyle = value; OnPropertyChanged("FontStyle"); } }
 
         public MainWindowViewModel(IStore store)
         {
