@@ -8,5 +8,11 @@ namespace Calendar.Model
 {
     class Storage
     {
+            public List<Person> getPersons()
+            {
+                using (var db = new StorageContext())
+                    return db.Persons.ToList();
+            }
+
     }
 }

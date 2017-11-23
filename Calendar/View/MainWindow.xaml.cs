@@ -26,6 +26,8 @@ namespace Calendar.View
         public MainWindow()
         {
             InitializeComponent();
+            Storage s = new Storage();
+            var x = s.getPersons();
         }
 
         private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
