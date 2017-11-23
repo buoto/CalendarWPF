@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    class StorageContext
+    class StorageContext : DbContext
     {
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Person> Persons { get; set; }
