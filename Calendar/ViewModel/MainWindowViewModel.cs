@@ -1,4 +1,5 @@
 ﻿using Calendar.Model;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ namespace Calendar.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(MainWindowViewModel));
         private IStore store;
 
         public List<Appointment> Appointments { get; private set; }

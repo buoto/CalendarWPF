@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +7,7 @@ namespace Calendar.Model.Store
 {
     class StorageStore : IStore
     {
+        private static readonly ILog log = log4net.LogManager.GetLogger(typeof(StorageStore));
         private IStorage storage;
         private Person person;
 
@@ -16,6 +18,7 @@ namespace Calendar.Model.Store
             if (args.Length > 1) {
                 var userID = args[1];
                 person = storage.GetPersonByUserID(userID);
+                log.Info(string.Format("Zalogowano jako {0} {1}.", person.FirstName, person.LastName));
             }
         }
 
