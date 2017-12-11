@@ -38,5 +38,13 @@ namespace Calendar.Model
                 handler(this, e);
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var day = obj as Day;
+            return day != null &&
+                   DateTime == day.DateTime &&
+                   EqualityComparer<ObservableCollection<Appointment>>.Default.Equals(appointments, day.appointments);
+        }
     }
 }

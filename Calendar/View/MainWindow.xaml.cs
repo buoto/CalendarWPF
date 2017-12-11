@@ -38,7 +38,7 @@ namespace Calendar.View
                     }
                     catch (ConcurrentUpdateException ex)
                     {
-                        System.Windows.MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message);
                     }
                 } else {
                     mainWindowViewModel.DeleteAppointment(appointment);

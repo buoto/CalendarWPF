@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace Calendar.Model.Store
 {
-    class StorageStore : IStore
+    public class StorageStore : IStore
     {
-        private static readonly ILog log = log4net.LogManager.GetLogger(typeof(StorageStore));
+        private static readonly ILog log = LogManager.GetLogger(typeof(StorageStore));
         private IStorage storage;
         private Person person;
 
@@ -20,7 +20,10 @@ namespace Calendar.Model.Store
             if (args.Length > 1) {
                 var userID = args[1];
                 person = storage.GetPersonByUserID(userID);
-                log.Info(string.Format("Signed in as {0} {1}.", person.FirstName, person.LastName));
+                if (person != null)
+                {
+                    log.Info(string.Format("Signed in as {0} {1}.", person.FirstName, person.LastName));
+                }
             }
         }
 
