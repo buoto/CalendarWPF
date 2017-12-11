@@ -77,6 +77,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MainModule.cs" />
+    <Compile Include="Migrations\201712111437198_InitialCreate.cs" />
+    <Compile Include="Migrations\201712111437198_InitialCreate.Designer.cs">
+      <DependentUpon>201712111437198_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111529343_PersonSetMaxLengths.cs" />
+    <Compile Include="Migrations\201712111529343_PersonSetMaxLengths.Designer.cs">
+      <DependentUpon>201712111529343_PersonSetMaxLengths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Event.cs" />
@@ -119,6 +128,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201712111437198_InitialCreate.resx">
+      <DependentUpon>201712111437198_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111529343_PersonSetMaxLengths.resx">
+      <DependentUpon>201712111529343_PersonSetMaxLengths.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

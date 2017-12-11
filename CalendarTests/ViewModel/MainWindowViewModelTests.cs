@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Calendar.Model;
+using Rhino.Mocks;
 
 namespace Calendar.ViewModel.Tests
 {
@@ -17,7 +18,9 @@ namespace Calendar.ViewModel.Tests
         [TestInitialize()]
         public void Initialize()
         {
-            mainWindowViewModel = new MainWindowViewModel(new MockStore()); // TODO real mocks
+            MockRepository mockRepository = new MockRepository();
+            IStorage storage = mockRepository.StrictMock<IStorage>();
+            mainWindowViewModel = new MainWindowViewModel(new MockStore(), storage);
         }
 
         [TestMethod()]

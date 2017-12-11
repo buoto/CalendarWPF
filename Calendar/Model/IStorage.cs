@@ -10,5 +10,9 @@ namespace Calendar.Model
     {
         List<Person> getPersons();
         List<Appointment> getAppointments();
+
+        void CreateAppointment(string title, DateTime startTime, DateTime endTime);
+        void UpdateAppointment(Appointment st);
+        void DeleteAppointment(Appointment st);
     }
 }
