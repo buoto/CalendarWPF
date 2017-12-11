@@ -1,11 +1,15 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace Calendar.Model
 {
     class Storage : IStorage
     {
+        private static readonly ILog log = log4net.LogManager.GetLogger(typeof(Storage));
+
         public List<Appointment> GetAppointments(Person person)
         {
             using (var db = new StorageContext())
@@ -76,12 +80,20 @@ namespace Calendar.Model
             {
                 var original = db.Appointments.Find(st.AppointmentId);
                 if (original != null)
-                {  
+                {
                     original.Title = st.Title;
                     original.StartTime = st.StartTime;
                     original.EndTime = st.EndTime;
-                    db.SaveChanges();
-
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateConcurrencyException e)
+                    {
+                        string message = string.Format("Update of appointment \"{0}\" failed due to concurrent write!", st.Title);
+                        log.Error(message, e);
+                        throw new ConcurrentUpdateException(message);
+                    }
                 }
             }
         }

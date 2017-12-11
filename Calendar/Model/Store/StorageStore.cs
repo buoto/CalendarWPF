@@ -1,6 +1,7 @@
 ﻿using log4net;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace Calendar.Model.Store
@@ -19,7 +20,7 @@ namespace Calendar.Model.Store
             if (args.Length > 1) {
                 var userID = args[1];
                 person = storage.GetPersonByUserID(userID);
-                log.Info(string.Format("Zalogowano jako {0} {1}.", person.FirstName, person.LastName));
+                log.Info(string.Format("Signed in as {0} {1}.", person.FirstName, person.LastName));
             }
         }
 
@@ -32,6 +33,7 @@ namespace Calendar.Model.Store
         public void EditAppointment(Appointment old, Appointment changed)
         {
             storage.UpdateAppointment(changed);
+
         }
 
         public void DeleteAppointment(Appointment appointment)

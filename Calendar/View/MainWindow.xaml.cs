@@ -32,7 +32,14 @@ namespace Calendar.View
             if (res.HasValue && res.Value) {
                 Appointment newAppointment = detailsWindowViewModel.Appointment;
                 if (newAppointment != null) {
-                    mainWindowViewModel.EditAppointment(appointment, detailsWindowViewModel.Appointment);
+                    try
+                    {
+                        mainWindowViewModel.EditAppointment(appointment, detailsWindowViewModel.Appointment);
+                    }
+                    catch (ConcurrentUpdateException ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.Message);
+                    }
                 } else {
                     mainWindowViewModel.DeleteAppointment(appointment);
                 }

@@ -104,11 +104,16 @@
     <Compile Include="Migrations\201712111907282_UniqueUserID.Designer.cs">
       <DependentUpon>201712111907282_UniqueUserID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712112147154_AddTimestamp.cs" />
+    <Compile Include="Migrations\201712112147154_AddTimestamp.Designer.cs">
+      <DependentUpon>201712112147154_AddTimestamp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Attendance.cs" />
     <Compile Include="Model\Calendar.cs" />
+    <Compile Include="Model\ConcurrentUpdateException.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Storage\IStorage.cs" />
     <Compile Include="Model\Store\MockStore.cs" />
@@ -164,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712111907282_UniqueUserID.resx">
       <DependentUpon>201712111907282_UniqueUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712112147154_AddTimestamp.resx">
+      <DependentUpon>201712112147154_AddTimestamp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
