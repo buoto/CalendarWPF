@@ -69,8 +69,8 @@ namespace Calendar.ViewModel
                     if (day.Appointments.Remove(old)) {
                         day.Appointments.Add(appointment);
                         day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.StartTime));
-                        store.DeleteAppointment(old);
-                        store.AddAppointment(appointment);
+                        store.EditAppointment(old, appointment);
+                        break;
                     }
                 }
             }

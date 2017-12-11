@@ -13,6 +13,10 @@ namespace Calendar.Model
         {
         }
 
+        public void EditAppointment(Appointment old, Appointment changed)
+        {
+        }
+
         public List<Day> GetDays(DateTime dateTime)
         {
             List<Day> list = new List<Day>();

@@ -24,11 +24,9 @@ namespace Calendar.ViewModel
                     {
                         time = appointment.StartTime;
                     }
-                    appointment = new Appointment {
-                        Title = Name,
-                        StartTime = new DateTime(time.Year, time.Month, time.Day, StartHour, StartMinute, 0),
-                        EndTime = new DateTime(time.Year, time.Month, time.Day, EndHour, EndMinute, 0)
-                    };
+                    appointment.Title = Name;
+                    appointment.StartTime = new DateTime(time.Year, time.Month, time.Day, StartHour, StartMinute, 0);
+                    appointment.EndTime = new DateTime(time.Year, time.Month, time.Day, EndHour, EndMinute, 0);
                     CloseAction();
                 }
             ));

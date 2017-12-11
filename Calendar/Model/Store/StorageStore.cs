@@ -15,6 +15,7 @@ namespace Calendar.Model.Store
             this.storage = storage;
 
             var args = Environment.GetCommandLineArgs();
+
             if (args.Length > 1) {
                 var userID = args[1];
                 person = storage.GetPersonByUserID(userID);
@@ -26,6 +27,11 @@ namespace Calendar.Model.Store
         {
             appointment = storage.CreateAppointment(appointment.Title, appointment.StartTime, appointment.EndTime);
             storage.CreateAttendance(appointment, person);
+        }
+
+        public void EditAppointment(Appointment old, Appointment changed)
+        {
+            storage.UpdateAppointment(changed);
         }
 
         public void DeleteAppointment(Appointment appointment)

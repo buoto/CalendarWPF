@@ -76,11 +76,12 @@ namespace Calendar.Model
             {
                 var original = db.Appointments.Find(st.AppointmentId);
                 if (original != null)
-                {
+                {  
                     original.Title = st.Title;
                     original.StartTime = st.StartTime;
                     original.EndTime = st.EndTime;
                     db.SaveChanges();
+
                 }
             }
         }

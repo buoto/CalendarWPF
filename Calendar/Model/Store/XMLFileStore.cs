@@ -93,5 +93,11 @@ namespace Calendar.Model
         {
             return GetDays(DateTime.Now);
         }
+
+        public void EditAppointment(Appointment old, Appointment changed)
+        {
+            DeleteAppointment(old);
+            AddAppointment(changed);
+        }
     }
 }
