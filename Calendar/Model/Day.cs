@@ -11,7 +11,7 @@ namespace Calendar.Model
     public class Day : INotifyPropertyChanged
     {
         public DateTime DateTime { get; set; }
-        public ObservableCollection<Event> Appointments {
+        public ObservableCollection<Appointment> Appointments {
             get { return appointments; }
             set
             {
@@ -22,12 +22,12 @@ namespace Calendar.Model
             }
         }
 
-        private ObservableCollection<Event> appointments;
+        private ObservableCollection<Appointment> appointments;
 
         public Day(DateTime dateTime)
         {
             DateTime = dateTime;
-            Appointments = new ObservableCollection<Event>(new List<Event>());
+            Appointments = new ObservableCollection<Appointment>(new List<Appointment>());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

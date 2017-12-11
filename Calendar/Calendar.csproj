@@ -88,7 +88,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
-    <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Attendance.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Day.cs" />

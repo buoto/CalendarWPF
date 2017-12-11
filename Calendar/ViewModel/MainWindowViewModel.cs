@@ -68,12 +68,12 @@ namespace Calendar.ViewModel
             Days = new ObservableCollection<Day>(store.GetDaysWithNow());
         }
 
-        public void EditAppointment(Event old, Event appointment) {
+        public void EditAppointment(Appointment old, Appointment appointment) {
             foreach (var day in Days) {
-                if (day.DateTime.Year == old.Start.Year && day.DateTime.Month == old.Start.Month && day.DateTime.Day == old.Start.Day) {
+                if (day.DateTime.Year == old.StartTime.Year && day.DateTime.Month == old.StartTime.Month && day.DateTime.Day == old.StartTime.Day) {
                     if (day.Appointments.Remove(old)) {
                         day.Appointments.Add(appointment);
-                        day.Appointments = new ObservableCollection<Event>(day.Appointments.OrderBy(a => a.Start));
+                        day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.StartTime));
                         store.DeleteAppointment(old);
                         store.AddAppointment(appointment);
                     }
@@ -81,9 +81,9 @@ namespace Calendar.ViewModel
             }
         }
 
-        public void DeleteAppointment(Event appointment) { 
+        public void DeleteAppointment(Appointment appointment) { 
             foreach (var day in Days) {
-                if (day.DateTime.Year == appointment.Start.Year && day.DateTime.Month == appointment.Start.Month && day.DateTime.Day == appointment.Start.Day) {
+                if (day.DateTime.Year == appointment.StartTime.Year && day.DateTime.Month == appointment.StartTime.Month && day.DateTime.Day == appointment.StartTime.Day) {
                     if (day.Appointments.Remove(appointment))
                     {
                         store.DeleteAppointment(appointment);
@@ -93,9 +93,9 @@ namespace Calendar.ViewModel
             }
         }
 
-        public void AddAppointment(Day day, Event appointment) {
+        public void AddAppointment(Day day, Appointment appointment) {
             day.Appointments.Add(appointment);
-            day.Appointments = new ObservableCollection<Event>(day.Appointments.OrderBy(a => a.Start));
+            day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.StartTime));
             store.AddAppointment(appointment);
         }
     }

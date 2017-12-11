@@ -111,9 +111,9 @@
                                                 <TextBlock>
                                                     <TextBlock.Text>
                                                         <MultiBinding StringFormat="{}{0:HH:mm} - {1:HH:mm} {2}">
-                                                            <Binding Path="Start" />
-                                                            <Binding Path="End" />
-                                                            <Binding Path="Name" />
+                                                            <Binding Path="StartTime" />
+                                                            <Binding Path="EndTime" />
+                                                            <Binding Path="Title" />
                                                         </MultiBinding>
                                                     </TextBlock.Text>
                                                 </TextBlock>

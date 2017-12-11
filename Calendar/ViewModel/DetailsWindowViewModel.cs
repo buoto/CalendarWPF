@@ -26,12 +26,13 @@ namespace Calendar.ViewModel
                     }
                     else
                     {
-                        time = appointment.Start;
+                        time = appointment.StartTime;
                     }
-                    appointment = new Event(
-                        Name,
-                        new DateTime(time.Year, time.Month, time.Day, StartHour, StartMinute, 0),
-                        new DateTime(time.Year, time.Month, time.Day, EndHour, EndMinute, 0));
+                    appointment = new Appointment {
+                        Title = Name,
+                        StartTime = new DateTime(time.Year, time.Month, time.Day, StartHour, StartMinute, 0),
+                        EndTime = new DateTime(time.Year, time.Month, time.Day, EndHour, EndMinute, 0)
+                    };
                     CloseAction();
                 }
             ));
@@ -54,7 +55,7 @@ namespace Calendar.ViewModel
         }
 
         public string Title { get; set; }
-         public Event Appointment {
+         public Appointment Appointment {
             get
             {
                 return appointment;
@@ -64,13 +65,13 @@ namespace Calendar.ViewModel
                 appointment = value;
                 OnPropertyChanged("DeleteVisibility");
 
-                Name = value.Name;
+                Name = value.Title;
 
-                StartHour = value.Start.Hour;
-                StartMinute = value.Start.Minute;
+                StartHour = value.StartTime.Hour;
+                StartMinute = value.StartTime.Minute;
 
-                EndHour = value.End.Hour;
-                EndMinute = value.End.Minute;
+                EndHour = value.EndTime.Hour;
+                EndMinute = value.EndTime.Minute;
             }
         }
 
@@ -136,7 +137,7 @@ namespace Calendar.ViewModel
 
         private int startHour, startMinute, endHour, endMinute;
 
-        private Event appointment;
+        private Appointment appointment;
 
     }
 }
