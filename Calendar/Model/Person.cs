@@ -9,10 +9,16 @@ namespace Calendar.Model
     {
         [Key]
         public Guid PersonId { get; set; }
+
         [MaxLength(32)]
         public string FirstName { get; set; }
+
         [MaxLength(32)]
         public string LastName { get; set; }
+
+        [MaxLength(32), Required, Index(IsUnique = true)]
+        public string UserID { get; set; }
+
         public virtual List<Attendance> Attendances { get; set; }
     }
 }

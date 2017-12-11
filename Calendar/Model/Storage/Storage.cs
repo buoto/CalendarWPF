@@ -30,6 +30,12 @@ namespace Calendar.Model
                 return db.Persons.Find(ID);
         }
 
+        public Person GetPersonByUserID(string userID)
+        {
+            using (var db = new StorageContext())
+                return db.Persons.Where(p => p.UserID == userID).First();
+        }
+
         public void CreatePerson(string firstName, string lastName)
         {
             using (var db = new StorageContext()) {

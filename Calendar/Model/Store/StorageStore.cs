@@ -14,8 +14,8 @@ namespace Calendar.Model.Store
 
             var args = Environment.GetCommandLineArgs();
             if (args.Length > 1) {
-                var guid = new Guid(args[1]);
-                person = storage.GetPerson(guid);
+                var userID = args[1];
+                person = storage.GetPersonByUserID(userID);
             }
         }
 

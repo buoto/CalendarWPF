@@ -7,6 +7,7 @@ namespace Calendar.Model
     {
         List<Person> GetPersons();
         Person GetPerson(Guid ID);
+        Person GetPersonByUserID(String userID);
         void CreatePerson(string firstName, string lastName);
 
 

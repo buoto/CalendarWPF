@@ -93,6 +93,14 @@
     <Compile Include="Migrations\201712111850009_RemoveUserId.Designer.cs">
       <DependentUpon>201712111850009_RemoveUserId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712111905227_AddUserID.cs" />
+    <Compile Include="Migrations\201712111905227_AddUserID.Designer.cs">
+      <DependentUpon>201712111905227_AddUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111907282_UniqueUserID.cs" />
+    <Compile Include="Migrations\201712111907282_UniqueUserID.Designer.cs">
+      <DependentUpon>201712111907282_UniqueUserID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
@@ -147,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712111850009_RemoveUserId.resx">
       <DependentUpon>201712111850009_RemoveUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111905227_AddUserID.resx">
+      <DependentUpon>201712111905227_AddUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111907282_UniqueUserID.resx">
+      <DependentUpon>201712111907282_UniqueUserID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
