@@ -49,6 +49,8 @@
             </Style>
         </Grid.Resources>
 
+
+        <ListBox ItemsSource="{Binding Appointments}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="prev" Command="{Binding PrevCommand}"/>
         <Label Content="Monday" Grid.Column="1" />
         <Label Content="Tuesday" Grid.Column="2" />

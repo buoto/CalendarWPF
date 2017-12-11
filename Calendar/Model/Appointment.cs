@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    class Appointment
+    public class Appointment
     {
         [Key]
         public Guid AppointmentId { get; set; }

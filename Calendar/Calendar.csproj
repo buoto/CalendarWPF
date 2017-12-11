@@ -83,6 +83,7 @@
     <Compile Include="Model\Attendance.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Day.cs" />
+    <Compile Include="Model\IStorage.cs" />
     <Compile Include="Model\MockStore.cs" />
     <Compile Include="Model\IStore.cs" />
     <Compile Include="Model\Person.cs" />

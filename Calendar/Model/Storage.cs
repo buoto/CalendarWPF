@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
-    class Storage
+    class Storage : IStorage
     {
-            public List<Person> getPersons()
-            {
-                using (var db = new StorageContext())
-                    return db.Persons.ToList();
-            }
+        public List<Appointment> getAppointments()
+        {
+            using (var db = new StorageContext())
+                return db.Appointments.ToList();
+        }
+
+        public List<Person> getPersons()
+        {
+            using (var db = new StorageContext())
+                return db.Persons.ToList();
+        }
 
     }
 }
