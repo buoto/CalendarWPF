@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Calendar.Model
 {
@@ -12,7 +13,6 @@ namespace Calendar.Model
         public string FirstName { get; set; }
         [MaxLength(32)]
         public string LastName { get; set; }
-        public string UserID { get; set; }
         public virtual List<Attendance> Attendances { get; set; }
     }
 }

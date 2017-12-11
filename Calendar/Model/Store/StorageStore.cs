@@ -9,15 +9,20 @@ namespace Calendar.Model.Store
         private IStorage storage;
         private Person person;
 
-        public Guid PersonID { set => person = storage.GetPerson(value); }
-
         public StorageStore(IStorage storage) {
             this.storage = storage;
+
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length > 1) {
+                var guid = new Guid(args[1]);
+                person = storage.GetPerson(guid);
+            }
         }
 
         public void AddAppointment(Appointment appointment)
         {
-            storage.CreateAppointment(appointment.Title, appointment.StartTime, appointment.EndTime, person);
+            appointment = storage.CreateAppointment(appointment.Title, appointment.StartTime, appointment.EndTime);
+            storage.CreateAttendance(appointment, person);
         }
 
         public void DeleteAppointment(Appointment appointment)

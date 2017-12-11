@@ -9,7 +9,13 @@ namespace Calendar.Model
         public List<Appointment> GetAppointments(Person person)
         {
             using (var db = new StorageContext())
-                return db.Appointments.ToList();
+            {
+                var q = from a in db.Appointments
+                       join att in db.Attendances on a.AppointmentId equals att.Appointment.AppointmentId
+                       where att.Person.PersonId == person.PersonId
+                       select a;
+                return q.ToList();
+            }
         }
 
         public List<Person> GetPersons()
@@ -24,22 +30,39 @@ namespace Calendar.Model
                 return db.Persons.Find(ID);
         }
 
+        public void CreatePerson(string firstName, string lastName)
+        {
+            using (var db = new StorageContext()) {
+                var person = new Person
+                {
+                    PersonId = Guid.NewGuid(),
+                    FirstName = firstName,
+                    LastName = lastName
+                };
+                db.Persons.Add(person);
+                db.SaveChanges();
+            }
+        }
 
-        public void CreateAppointment(string title, DateTime startTime, DateTime endTime, Person person)
+        public Appointment CreateAppointment(string title, DateTime startTime, DateTime endTime)
         {
             using (var db = new StorageContext())
             {
+
                 var appointment = new Appointment
                 {
+                    AppointmentId = Guid.NewGuid(),
                     Title = title,
                     StartTime = startTime,
                     EndTime = endTime
                 };
                 db.Appointments.Add(appointment);
-                db.Attendances.Add(new Attendance { Appointment = appointment, Person = person, Accepted = true });
+
                 db.SaveChanges();
+                return appointment;
             }
         }
+
 
         public void UpdateAppointment(Appointment st)
         {
@@ -51,7 +74,6 @@ namespace Calendar.Model
                     original.Title = st.Title;
                     original.StartTime = st.StartTime;
                     original.EndTime = st.EndTime;
-                    original.Attendances = st.Attendances;
                     db.SaveChanges();
                 }
             }
@@ -64,7 +86,7 @@ namespace Calendar.Model
                 var original = db.Appointments.Find(st.AppointmentId);
                 if (original != null)
                 {
-                    original.Attendances.ForEach(attendance => db.Attendances.Remove(attendance));
+                    original.Attendances.ToList().ForEach(attendance => db.Attendances.Remove(attendance));
 
                     db.Appointments.Remove(original);
                     db.SaveChanges();
@@ -72,6 +94,22 @@ namespace Calendar.Model
             }
         }
 
+        public Attendance CreateAttendance(Appointment appointment, Person person)
+        {
+            using (var db = new StorageContext())
+            {
+                var attendance = new Attendance
+                {
+                    AttendanceId = Guid.NewGuid(),
+                    Accepted = true,
+                    PersonId = person.PersonId,
+                    AppointmentId = appointment.AppointmentId,
+                };
+                db.Attendances.Add(attendance);
 
+                db.SaveChanges();
+                return attendance;
+            }
+        }
     }
 }

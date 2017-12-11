@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201712111529343_PersonSetMaxLengths.Designer.cs">
       <DependentUpon>201712111529343_PersonSetMaxLengths.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712111838515_FixForeignKeys.cs" />
+    <Compile Include="Migrations\201712111838515_FixForeignKeys.Designer.cs">
+      <DependentUpon>201712111838515_FixForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111850009_RemoveUserId.cs" />
+    <Compile Include="Migrations\201712111850009_RemoveUserId.Designer.cs">
+      <DependentUpon>201712111850009_RemoveUserId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
@@ -133,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712111529343_PersonSetMaxLengths.resx">
       <DependentUpon>201712111529343_PersonSetMaxLengths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111838515_FixForeignKeys.resx">
+      <DependentUpon>201712111838515_FixForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111850009_RemoveUserId.resx">
+      <DependentUpon>201712111850009_RemoveUserId.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

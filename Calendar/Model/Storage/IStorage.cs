@@ -6,11 +6,15 @@ namespace Calendar.Model
     public interface IStorage
     {
         List<Person> GetPersons();
-        List<Appointment> GetAppointments(Person person);
         Person GetPerson(Guid ID);
+        void CreatePerson(string firstName, string lastName);
 
-        void CreateAppointment(string title, DateTime startTime, DateTime endTime, Person person);
+
+        List<Appointment> GetAppointments(Person person);
+        Appointment CreateAppointment(string title, DateTime startTime, DateTime endTime);
         void UpdateAppointment(Appointment st);
         void DeleteAppointment(Appointment st);
+
+        Attendance CreateAttendance(Appointment appointment, Person person);
     }
 }
