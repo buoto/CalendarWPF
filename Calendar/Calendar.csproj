@@ -112,7 +112,6 @@
     <Compile Include="MockModule.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Attendance.cs" />
-    <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\ConcurrentUpdateException.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Storage\IStorage.cs" />
