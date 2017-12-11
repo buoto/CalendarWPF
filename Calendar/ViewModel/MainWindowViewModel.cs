@@ -11,7 +11,6 @@ namespace Calendar.ViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private IStore store;
-        private IStorage storage;
 
         public List<Appointment> Appointments { get; private set; }
 
@@ -43,14 +42,10 @@ namespace Calendar.ViewModel
 
         public string FontStyle { get { return fontStyle; } set { fontStyle = value; OnPropertyChanged("FontStyle"); } }
 
-        public MainWindowViewModel(IStore store, IStorage storage)
+        public MainWindowViewModel(IStore store)
         {
             this.store = store;
-            this.storage = storage;
 
-            Appointments = storage.getAppointments();
-            Appointments.Add(new Appointment());
-            OnPropertyChanged("Appointments");
             PrevCommand = new RelayCommand(
                 new Action<object>(delegate (object obj)
                 {

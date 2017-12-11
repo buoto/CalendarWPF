@@ -18,9 +18,9 @@ namespace Calendar.ViewModel.Tests
         [TestInitialize()]
         public void Initialize()
         {
-            MockRepository mockRepository = new MockRepository();
-            IStorage storage = mockRepository.StrictMock<IStorage>();
-            mainWindowViewModel = new MainWindowViewModel(new MockStore(), storage);
+            //MockRepository mockRepository = new MockRepository();
+            //IStorage storage = mockRepository.StrictMock<IStorage>();
+            mainWindowViewModel = new MainWindowViewModel(new MockStore());
         }
 
         [TestMethod()]

@@ -13,7 +13,6 @@ namespace Calendar
         public override void Load()
         {
             Bind<IStore>().To<MockStore>();
-            Bind<IStorage>().To<Storage>();
         }
     }
 }
