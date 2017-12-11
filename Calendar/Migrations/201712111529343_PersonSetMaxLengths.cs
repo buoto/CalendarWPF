@@ -1,8 +1,7 @@
 namespace Calendar.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class PersonSetMaxLengths : DbMigration
     {
         public override void Up()

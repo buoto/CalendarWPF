@@ -1,37 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
     class Storage : IStorage
     {
-        public List<Appointment> getAppointments()
+        public List<Appointment> GetAppointments(Person person)
         {
             using (var db = new StorageContext())
                 return db.Appointments.ToList();
         }
 
-        public List<Person> getPersons()
+        public List<Person> GetPersons()
         {
             using (var db = new StorageContext())
                 return db.Persons.ToList();
         }
 
+        public Person GetPerson(Guid ID)
+        {
+            using (var db = new StorageContext())
+                return db.Persons.Find(ID);
+        }
 
-        public void CreateAppointment(string title, DateTime startTime, DateTime endTime)
+
+        public void CreateAppointment(string title, DateTime startTime, DateTime endTime, Person person)
         {
             using (var db = new StorageContext())
             {
-                var Appointment = new Appointment
+                var appointment = new Appointment
                 {
                     Title = title,
                     StartTime = startTime,
                     EndTime = endTime
                 };
-                db.Appointments.Add(Appointment);
+                db.Appointments.Add(appointment);
+                db.Attendances.Add(new Attendance { Appointment = appointment, Person = person, Accepted = true });
                 db.SaveChanges();
             }
         }
@@ -59,6 +64,8 @@ namespace Calendar.Model
                 var original = db.Appointments.Find(st.AppointmentId);
                 if (original != null)
                 {
+                    original.Attendances.ForEach(attendance => db.Attendances.Remove(attendance));
+
                     db.Appointments.Remove(original);
                     db.SaveChanges();
                 }

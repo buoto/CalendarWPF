@@ -6,6 +6,6 @@
     <Application.Resources>
         <local:MockModule x:Key="mockModule" />
         <local:MainModule x:Key="mainModule" />
-        <local:NinjectServiceLocator x:Key="serviceLocator" Module="{StaticResource mockModule}"/>
+        <local:NinjectServiceLocator x:Key="serviceLocator" Module="{StaticResource mainModule}"/>
     </Application.Resources>
 </Application>

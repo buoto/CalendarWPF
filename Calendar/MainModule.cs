@@ -1,10 +1,6 @@
 ﻿using Calendar.Model;
+using Calendar.Model.Store;
 using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calendar
 {
@@ -12,7 +8,8 @@ namespace Calendar
     {
         public override void Load()
         {
-            Bind<IStore>().To<XMLFileStore>();
+            Bind<IStorage>().To<Storage>();
+            Bind<IStore>().To<StorageStore>();
         }
     }
 }
