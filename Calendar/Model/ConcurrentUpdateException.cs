@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calendar.Model
 {
+    [Serializable]
     class ConcurrentUpdateException : Exception
     {
         public ConcurrentUpdateException(string message)

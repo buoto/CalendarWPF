@@ -25,7 +25,7 @@ namespace Calendar.Model
         public Day(DateTime dateTime)
         {
             DateTime = dateTime;
-            Appointments = new ObservableCollection<Appointment>(new List<Appointment>());
+            appointments = new ObservableCollection<Appointment>(new List<Appointment>());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
