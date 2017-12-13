@@ -21,7 +21,7 @@ namespace Calendar.ViewModel
         public RelayCommand NextCommand { get; set; }
         private ObservableCollection<Day> days;
         public ObservableCollection<Day> Days {
-            get { return days;}
+            get { return days; }
             set {
                 days = value;
 
@@ -46,19 +46,17 @@ namespace Calendar.ViewModel
         {
             this.store = store;
 
-            PrevCommand = new RelayCommand(
-                new Action<object>(delegate (object obj)
+            PrevCommand = new RelayCommand(o =>
                 {
                     Days = new ObservableCollection<Day>(store.GetDays(Days[0].DateTime.AddDays(-7)));
                 }
-            ));
+            );
 
-            NextCommand = new RelayCommand(
-                new Action<object>(delegate (object obj)
+            NextCommand = new RelayCommand(o =>
                 {
                     Days = new ObservableCollection<Day>(store.GetDays(Days[0].DateTime.AddDays(7)));
                 }
-            ));
+            );
 
             Days = new ObservableCollection<Day>(store.GetDaysWithNow());
         }
@@ -67,8 +65,7 @@ namespace Calendar.ViewModel
             foreach (var day in Days) {
                 if (day.DateTime.Year == old.StartTime.Year && day.DateTime.Month == old.StartTime.Month && day.DateTime.Day == old.StartTime.Day) {
                     if (day.Appointments.Remove(old)) {
-                        day.Appointments.Add(appointment);
-                        day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.StartTime));
+                        day.AddAppointment(appointment);
                         store.EditAppointment(old, appointment);
                         break;
                     }
@@ -89,8 +86,7 @@ namespace Calendar.ViewModel
         }
 
         public void AddAppointment(Day day, Appointment appointment) {
-            day.Appointments.Add(appointment);
-            day.Appointments = new ObservableCollection<Appointment>(day.Appointments.OrderBy(a => a.StartTime));
+            day.AddAppointment(appointment);
             store.AddAppointment(appointment);
         }
     }

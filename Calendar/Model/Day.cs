@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Calendar.Model
 {
@@ -45,6 +46,12 @@ namespace Calendar.Model
             return day != null &&
                    DateTime == day.DateTime &&
                    EqualityComparer<ObservableCollection<Appointment>>.Default.Equals(appointments, day.appointments);
+        }
+
+        public void AddAppointment(Appointment appointment)
+        {
+            appointments.Add(appointment);
+            Appointments = new ObservableCollection<Appointment>(Appointments.OrderBy(a => a.StartTime));
         }
     }
 }

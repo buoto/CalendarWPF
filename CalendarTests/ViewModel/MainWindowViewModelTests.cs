@@ -56,12 +56,27 @@ namespace Calendar.ViewModel.Tests
         }
 
         [TestMethod()]
+        public void AddAppointmentPreservesOrderTest()
+        {
+            Appointment older = new Appointment { Title = "name", StartTime = DateTime.Now.AddSeconds(-1), EndTime = DateTime.Now };
+            Appointment newer = new Appointment { Title = "name", StartTime = DateTime.Now, EndTime = DateTime.Now };
+
+            // Add in reversed order
+            mainWindowViewModel.AddAppointment(mainWindowViewModel.Days[0], newer);
+            mainWindowViewModel.AddAppointment(mainWindowViewModel.Days[0], older);
+
+            // Appointments are stored in correct order
+            Assert.AreEqual(older, mainWindowViewModel.Days[0].Appointments[0]);
+            Assert.AreEqual(newer, mainWindowViewModel.Days[0].Appointments[1]);
+        }
+
+        [TestMethod()]
         public void EditAppointmentTest()
         {
             Appointment edited = new Appointment { Title = "name", StartTime = DateTime.Now, EndTime = DateTime.Now };
             mainWindowViewModel.EditAppointment(appointment, edited);
 
-            Assert.AreEqual("name", mainWindowViewModel.Days[3].Appointments[0].Title);
+            Assert.AreEqual(edited, mainWindowViewModel.Days[3].Appointments[0]);
         }
 
         [TestMethod()]

@@ -30,7 +30,8 @@ namespace Calendar.Model.Store.Tests
         public void StorageStoreTest()
         {
             var storage = MockRepository.GenerateStrictMock<IStorage>();
-            storage.Expect(s => s.GetPersonByUserID("/parentProcessId")).Return(null);
+            storage.Expect(s => s.GetPersonByUserID(null)).IgnoreArguments().Return(null);
+
             storage.Replay();
 
             var storageStore = new StorageStore(storage);
