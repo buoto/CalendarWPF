@@ -91,7 +91,7 @@
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="White" />
                                     <Setter Property="Foreground" Value="#00008F" />
-                                        <Setter Property="FontFamily" Value="{Binding Path=DataContext.FontStyle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                    <Setter Property="FontFamily" Value="{Binding Path=DataContext.FontStyle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
                                 </Style>
                                 <Style TargetType="Border">
                                     <Setter Property="BorderThickness" Value="1" />

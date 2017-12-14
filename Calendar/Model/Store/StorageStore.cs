@@ -30,7 +30,9 @@ namespace Calendar.Model.Store
         public void AddAppointment(Appointment appointment)
         {
             appointment = storage.CreateAppointment(appointment.Title, appointment.StartTime, appointment.EndTime);
-            storage.CreateAttendance(appointment, person);
+            if (person != null && person.PersonId != Guid.Empty) {
+                storage.CreateAttendance(appointment, person);
+            }
         }
 
         public void EditAppointment(Appointment old, Appointment changed)

@@ -14,6 +14,8 @@ namespace Calendar.Model
         {
             using (var db = new StorageContext())
             {
+                if (person == null)
+                    return db.Appointments.ToList();
                 var q = from a in db.Appointments
                        join att in db.Attendances on a.AppointmentId equals att.Appointment.AppointmentId
                        where att.Person.PersonId == person.PersonId
@@ -36,18 +38,28 @@ namespace Calendar.Model
 
         public Person GetPersonByUserID(string userID)
         {
-            using (var db = new StorageContext())
-                return db.Persons.Where(p => p.UserID == userID).First();
+            using (var db = new StorageContext()) {
+                try
+                {
+                    return db.Persons.Where(p => p.UserID == userID).First();
+                }
+                catch (InvalidOperationException)
+                {
+                    return new Person();
+                }
+            }
+
         }
 
-        public void CreatePerson(string firstName, string lastName)
+        public void CreatePerson(string firstName, string lastName, string userId)
         {
             using (var db = new StorageContext()) {
                 var person = new Person
                 {
                     PersonId = Guid.NewGuid(),
                     FirstName = firstName,
-                    LastName = lastName
+                    LastName = lastName,
+                    UserID = userId,
                 };
                 db.Persons.Add(person);
                 db.SaveChanges();
@@ -81,6 +93,7 @@ namespace Calendar.Model
                 var original = db.Appointments.Find(st.AppointmentId);
                 if (original != null)
                 {
+                    db.Entry(original).OriginalValues["RowVersion"] = st.RowVersion;
                     original.Title = st.Title;
                     original.StartTime = st.StartTime;
                     original.EndTime = st.EndTime;

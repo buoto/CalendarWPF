@@ -44,7 +44,7 @@ namespace Calendar.ViewModel
         public MainWindowViewModel(IStore store)
         {
             this.store = store;
-
+            
             PrevCommand = new RelayCommand(o =>
                 {
                     Days = new ObservableCollection<Day>(store.GetDays(Days[0].DateTime.AddDays(-7)));
@@ -63,11 +63,21 @@ namespace Calendar.ViewModel
         public void EditAppointment(Appointment old, Appointment appointment) {
             foreach (var day in Days) {
                 if (day.DateTime.Year == old.StartTime.Year && day.DateTime.Month == old.StartTime.Month && day.DateTime.Day == old.StartTime.Day) {
-                    if (day.Appointments.Remove(old)) {
-                        day.AddAppointment(appointment);
+                    try
+                    {
                         store.EditAppointment(old, appointment);
-                        break;
+                        if (day.Appointments.Remove(old))
+                        {
+                            day.AddAppointment(appointment);
+                            break;
+                        }
                     }
+                    catch (ConcurrentUpdateException e)
+                    {
+                        Days = new ObservableCollection<Day>(store.GetDays(Days[0].DateTime));
+                        throw e;
+                    }
+                    
                 }
             }
         }

@@ -19,6 +19,7 @@ namespace Calendar.ViewModel
                     if (appointment == null)
                     {
                         time = Day.DateTime;
+                        appointment = new Appointment();
                     }
                     else
                     {

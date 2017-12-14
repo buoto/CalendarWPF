@@ -71,12 +71,12 @@ namespace Calendar.View
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.FontSize = e.NewSize.Height * 0.04;
+            this.FontSize = e.NewSize.Width * 0.02;
         }
 
         private void ItemsControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.FontSize = e.NewSize.Height * 0.02;
+            this.FontSize = e.NewSize.Width * 0.01;
         }
 
         public bool PopupVisibility { get; set; }

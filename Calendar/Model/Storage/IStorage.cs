@@ -8,7 +8,7 @@ namespace Calendar.Model
         List<Person> GetPersons();
         Person GetPerson(Guid ID);
         Person GetPersonByUserID(String userID);
-        void CreatePerson(string firstName, string lastName);
+        void CreatePerson(string firstName, string lastName, string userId);
 
 
         List<Appointment> GetAppointments(Person person);

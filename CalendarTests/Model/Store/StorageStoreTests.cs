@@ -45,7 +45,7 @@ namespace Calendar.Model.Store.Tests
         {
             var storage = MockRepository.GenerateMock<IStorage>();
             storage.Expect(s => s.CreateAppointment(appointment.Title, appointment.StartTime, appointment.EndTime)).Return(appointment);
-            storage.Expect(s => s.CreateAttendance(appointment, null)).Return(null);
+            storage.Stub(s => s.CreateAttendance(appointment, null)).Return(null);
 
             storage.Replay();
 
